@@ -10,7 +10,7 @@ cat gfw.list |grep -E '^\|\|[^/*]*$' | sed 's/|//g' | awk '{ print "gfw/"$1 }' >
 cat adb.list |grep -E '^\|\|[^/*]*\^$' | sed 's/|//g' | sed 's/\^//g' | awk '{ print "adb/"$1 }' >> update.tmp
 cat china_mobile.list |grep -E '^\|\|[^/*]*\^$' | sed 's/|//g' | sed 's/\^//g' | awk '{ print "adb/"$1 }' >> update.tmp
 
-cat my.list >>update.tmp
+cat my.conf >>update.tmp
 sed 's/adb\/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*//g' update.tmp > a.tmp
 sed 's/gfw\/[0-9]*\/[0-9]*\.[0-9]*\.[0-9]*//g' a.tmp > b.tmp
 sed '/^\s*$/d' b.tmp > c.tmp
