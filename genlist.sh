@@ -11,7 +11,10 @@ cat adb.list |grep -E '^\|\|[^/*]*\^$' | sed 's/|//g' | sed 's/\^//g' | awk '{ p
 cat china_mobile.list |grep -E '^\|\|[^/*]*\^$' | sed 's/|//g' | sed 's/\^//g' | awk '{ print "adb/"$1 }' >> update.tmp
 
 cat my.list >>update.tmp
-cat update.tmp | awk '{ print $1 }' | sort | uniq >> update.conf
+sed 's/adb\/[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*//g' update.tmp > a.tmp
+sed 's/gfw\/[0-9]*\/[0-9]*\.[0-9]*\.[0-9]*//g' a.tmp > b.tmp
+sed '/^\s*$/d' b.tmp > c.tmp
+cat c.tmp | awk '{ print $1 }' | sort | uniq >> update.conf
 
-rm -f gfw.tmp update.tmp gfw.list adb.list china_mobile.list
+rm -f *.tmp *.list
 
